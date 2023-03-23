@@ -21,9 +21,20 @@ body .container {
   padding: 20px;
 }
 body .container #addTodo {
-  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   border-radius: 10px;
   width: 100%;
+  align-items: center;
+}
+body .container #addTodo .user {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+body .container #addTodo p {
+  align-self: start;
 }
 body .container #addTodo h2 {
   margin: 20px;

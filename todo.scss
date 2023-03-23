@@ -21,9 +21,22 @@ body {
 		padding: 20px;
 
 		#addTodo {
-			padding: 50px;
+			display: flex;
+			flex-direction: column;
+			padding: 20px;
 			border-radius: 10px;
 			width: 100%;
+			align-items: center;
+
+			.user {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			p {
+				align-self: start;
+			}
 
 			h2 {
 				margin: 20px;
