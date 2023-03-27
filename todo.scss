@@ -5,10 +5,17 @@
 }
 
 body {
-	color: gray;
+	background-color: #cee5d0;
+
+	h1 {
+		color: #94b49f;
+		text-align: center;
+		margin: 60px;
+	}
 
 	.container {
-		color: darkorange;
+		background-color: #fcf8e8;
+		color: #94b49f;
 		display: flex;
 		flex-direction: column;
 		width: 70%;
@@ -17,7 +24,7 @@ body {
 		margin: 100px auto;
 		text-align: center;
 		border-radius: 10px;
-		box-shadow: 0px 0px 34px 0px rgba(176, 176, 176, 1);
+		box-shadow: 0px 0px 33px 0px #94b49f;
 		padding: 20px;
 
 		#addTodo {
@@ -32,39 +39,51 @@ body {
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
-			}
 
-			p {
-				align-self: start;
-			}
+				p {
+					margin: 30px;
 
-			h2 {
-				margin: 20px;
+					span {
+						font-weight: 600;
+					}
+
+					a {
+						text-decoration: none;
+						color: #94b49f;
+						font-weight: 600;
+					}
+				}
 			}
 
 			input {
 				width: 70%;
 				line-height: 30px;
-				border: 1px solid gray;
+				border: 1px solid #ecb390;
 				border-radius: 5px;
 				padding: 10px;
 				font-size: 20px;
 				margin-bottom: 20px;
 				min-width: 160px;
+				color: #94b49f;
+
+				&::placeholder {
+					color: #ecb390;
+				}
 			}
 
 			button {
 				line-height: 30px;
-				border: 1px solid gray;
+				border: 1px solid #ecb390;
 				border-radius: 5px;
 				padding: 10px;
 				font-size: 20px;
-				background-color: forestgreen;
-				color: white;
+				background-color: #ecb390;
+				color: #fcf8e8;
+				font-weight: 600;
 			}
 		}
 		#todoList {
-			color: gray;
+			color: #94b49f;
 			list-style: none;
 
 			li {

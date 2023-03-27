@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="logIn.js"></script>
-    <title>TodoApp</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>To-Do List App</h1>
-    <h2>Log in to your App here:</h2>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script defer src="logIn.js"></script>
+		<title>TodoApp</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1>To-Do List App</h1>
+		<h2>Log in to your App here:</h2>
 
-    <div class="container">
-      <p id="errorMessage"></p>
-      <form action="">
-        <label for="name">User Name:</label>
-        <input type="text" id="name" name="name" placeholder="Your username" />
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Your password"
-        />
-        <input type="submit" value="Continue" />
-      </form>
-
-      <p>Can't log in?</p>
-      <p id="signup"><a href="signup.html">Sign up here for an account</a></p>
-    </div>
-  </body>
+		<div class="container">
+			<p id="errorMessage"></p>
+			<form action="">
+				<label for="name">User Name:</label>
+				<input type="text" id="name" name="name" placeholder="Your username" />
+				<label for="password">Password:</label>
+				<input
+					type="password"
+					id="password"
+					name="password"
+					placeholder="Your password"
+				/>
+				<input id="loginbutton" type="submit" value="CONTINUE" />
+			</form>
+		</div>
+		<div class="form-bottom">
+			<p>Don't have an account yet?</p>
+			<p id="signup"><a href="signup.html">Create new account here</a></p>
+		</div>
+	</body>
 </html>
