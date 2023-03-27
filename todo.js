@@ -17,11 +17,13 @@ addBtn.addEventListener("click", function (e) {
 
 	// adding todo text
 	const todoText = document.createElement("span");
+	todoText.classList.add("todoText");
 	todoText.textContent = todoInput.value;
 	todoListDiv.appendChild(todoText);
 
 	// adding delete button
 	const deleteBtn = document.createElement("button");
+	deleteBtn.classList.add("deleteBtn");
 	deleteBtn.textContent = "delete";
 	todoListDiv.appendChild(deleteBtn);
 
@@ -30,6 +32,7 @@ addBtn.addEventListener("click", function (e) {
 		todoListDiv.remove();
 	});
 	const editBtn = document.createElement("button");
+	editBtn.classList.add("editBtn");
 	editBtn.textContent = "edit";
 	todoListDiv.appendChild(editBtn);
 
@@ -38,6 +41,7 @@ addBtn.addEventListener("click", function (e) {
 	});
 
 	const favBtn = document.createElement("button");
+	favBtn.classList("favBtn");
 	favBtn.textContent = "favorite";
 	todoListDiv.appendChild(favBtn);
 
