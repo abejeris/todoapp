@@ -5,13 +5,13 @@
 }
 
 body {
-  background-color: rgb(190, 190, 190);
+  background-color: #cee5d0;
 }
 body h1,
 body h2 {
-  color: white;
+  color: #94b49f;
   text-align: center;
-  margin: 80px;
+  margin: 60px;
 }
 body .container {
   display: flex;
@@ -19,12 +19,16 @@ body .container {
   align-items: stretch;
   margin: auto;
   max-width: 500px;
-  width: 70%;
+  width: 50%;
+  background-color: #fcf8e8;
+  border-radius: 5px;
+  padding: 50px;
+  box-shadow: 0px 0px 33px 0px #94b49f;
 }
 body .container form {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: #94b49f;
 }
 body .container form label {
   margin: 10px 10px 0px 10px;
@@ -33,18 +37,39 @@ body .container form input {
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-  border: 1px solid grey;
+  border: 1px solid #ecb390;
 }
-body .container p:not(#errorMessage) {
-  text-align: center;
-  margin-top: 20px;
-  color: white;
+body .container form #name::-moz-placeholder, body .container form #password::-moz-placeholder, body .container form #password2::-moz-placeholder {
+  color: #ecb390;
 }
-body .container p:not(#errorMessage) a {
-  color: white;
-  text-decoration: none;
+body .container form #name::placeholder,
+body .container form #password::placeholder,
+body .container form #password2::placeholder {
+  color: #ecb390;
+}
+body .container form #loginbutton,
+body .container form #signupbutton {
+  background-color: #ecb390;
+  color: #fcf8e8;
+  font-weight: 600;
+  margin-top: 30px;
+}
+body .container .form-bottom {
+  border: 1px solid black;
 }
 body .container #signup {
   font-weight: 700;
   font-size: large;
+}
+body p:not(#errorMessage) {
+  text-align: center;
+  margin-top: 40px;
+  color: #94b49f;
+  font-size: 18px;
+}
+body p:not(#errorMessage) a {
+  color: #94b49f;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
 }/*# sourceMappingURL=style.css.map */
