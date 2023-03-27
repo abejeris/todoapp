@@ -82,12 +82,27 @@ body {
 				font-weight: 600;
 			}
 		}
+
 		#todoList {
 			color: #94b49f;
-			list-style: none;
 
-			li {
-				margin: 20px;
+			.todoDiv {
+				padding: 10px;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+
+				.todoText {
+					font-weight: 600;
+				}
+				.deleteBtn,
+				.editBtn {
+					background-color: #ecb390;
+					color: #fcf8e8;
+				}
+				.favBtn {
+					color: #ecb390;
+				}
 			}
 		}
 	}
