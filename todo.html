@@ -6,13 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>ToDo</title>
 		<link rel="stylesheet" href="todo.css" />
+		<script defer src="todo.js"></script>
 	</head>
 	<body>
 		<h1>My To Do List</h1>
 		<div class="container">
 			<div id="addTodo">
 				<div class="user">
-					<p>Welcome, <span id="usernamelogo">user</span></p>
+					<p>Welcome, <span id="usernameLogo"></span></p>
 					<p><a href="index.html">Log out</a></p>
 				</div>
 
@@ -20,17 +21,7 @@
 				<button id="add">ADD TO MY LIST</button>
 			</div>
 
-			<ul id="todoList">
-				<li>
-					pirmas dalykas Lorem ipsum dolor sit amet consectetur, adipisicing
-					elit. Neque, ipsa dolore! Nihil eius delectus et voluptate veniam nisi
-					eaque deleniti consequatur, quaerat suscipit! Exercitationem a velit
-					corporis fugit ducimus quae.
-				</li>
-				<li>antras dalykas</li>
-				<li>trecias dalykas</li>
-				<li>ketvirtas dalykas</li>
-			</ul>
+			<div id="todoList"></div>
 		</div>
 	</body>
 </html>
