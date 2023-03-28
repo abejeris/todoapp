@@ -11,6 +11,7 @@ signUpForm.addEventListener("submit", function (e) {
 		errorMessage.textContent = "Please enter all values";
 	} else if (localStorage.getItem(username)) {
 		const loginDetails = JSON.parse(localStorage.getItem(username));
+
 		if (
 			username === loginDetails.username &&
 			password === loginDetails.password
@@ -25,5 +26,7 @@ signUpForm.addEventListener("submit", function (e) {
 		} else {
 			errorMessage.textContent = "Wrong credentials";
 		}
+	} else {
+		errorMessage.textContent = "Wrong credentials";
 	}
 });

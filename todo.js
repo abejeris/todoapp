@@ -6,8 +6,10 @@ const todoInput = document.querySelector("#todo");
 const addBtn = document.querySelector("#add");
 
 const userTodosKey = `todos-${getUser.username}`; // Use username as part of key
+const userFavorites = `favorites-${getUser.username}`; //use username as part of key for favorite todos
 
 let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
+let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
 
 function renderTodos() {
 	const todoListContainer = document.querySelector("#todoList");
