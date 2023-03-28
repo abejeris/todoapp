@@ -53,7 +53,9 @@ function renderTodos() {
 		const favIcon = document.createElement("span");
 		favIcon.classList.add("favIcon");
 		favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+
 		btnDiv.append(favIcon);
+
 
 		favIcon.addEventListener("click", function () {
 			if (favIcon.innerHTML === '<i class="fa-regular fa-heart"></i>') {
@@ -72,6 +74,7 @@ function renderTodos() {
 			if (checkBox.checked) {
 			}
 		}
+
 	});
 }
 

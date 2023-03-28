@@ -79,8 +79,21 @@ body .container #addTodo button {
 }
 body .container #todoList {
   color: #94b49f;
-  list-style: none;
 }
-body .container #todoList li {
-  margin: 20px;
+body .container #todoList .todoDiv {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+body .container #todoList .todoDiv .todoText {
+  font-weight: 600;
+}
+body .container #todoList .todoDiv .deleteBtn,
+body .container #todoList .todoDiv .editBtn {
+  background-color: #ecb390;
+  color: #fcf8e8;
+}
+body .container #todoList .todoDiv .favBtn {
+  color: #ecb390;
 }/*# sourceMappingURL=todo.css.map */
