@@ -30,7 +30,7 @@ function renderTodos() {
 
 		const deleteBtn = document.createElement("button");
 		deleteBtn.classList.add("deleteBtn");
-		deleteBtn.textContent = "delete";
+		deleteBtn.textContent = "DELETE";
 		btnDiv.append(deleteBtn);
 
 		deleteBtn.addEventListener("click", function () {
@@ -40,7 +40,7 @@ function renderTodos() {
 		});
 		const editBtn = document.createElement("button");
 		editBtn.classList.add("editBtn");
-		editBtn.textContent = "edit";
+		editBtn.textContent = "EDIT";
 		btnDiv.append(editBtn);
 
 		editBtn.addEventListener("click", function () {
@@ -55,7 +55,6 @@ function renderTodos() {
 		favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
 
 		btnDiv.append(favIcon);
-
 
 		favIcon.addEventListener("click", function () {
 			if (favIcon.innerHTML === '<i class="fa-regular fa-heart"></i>') {
@@ -74,7 +73,6 @@ function renderTodos() {
 			if (checkBox.checked) {
 			}
 		}
-
 	});
 }
 
