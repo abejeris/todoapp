@@ -40,7 +40,7 @@ body .container #addTodo .user {
   justify-content: space-between;
 }
 body .container #addTodo .user p {
-  margin: 30px;
+  margin: 30px 5px;
 }
 body .container #addTodo .user p span {
   font-weight: 600;
@@ -94,6 +94,7 @@ body .container #todoList .todoDiv .todoText {
   font-weight: 600;
   margin-right: auto;
   text-align: left;
+  word-break: break-word;
 }
 body .container #todoList .todoDiv .btnDiv {
   display: flex;
