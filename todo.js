@@ -47,6 +47,8 @@ function renderTodos() {
 			const newTodoText = prompt("Edit your to-do item:", todoText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
 				todoText.textContent = newTodoText;
+				todos[index] = newTodoText; // Update corresponding todo in the array
+				localStorage.setItem(userTodosKey, JSON.stringify(todos));
 			}
 		});
 
