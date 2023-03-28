@@ -70,8 +70,18 @@ function renderTodos() {
 		checkBox.setAttribute("type", "checkbox");
 		todoListDiv.prepend(checkBox);
 
+		checkBox.addEventListener("change", function () {
+			check();
+		});
+
 		function check() {
 			if (checkBox.checked) {
+				todoText.style.textDecoration = "line-through";
+				todoText.style.opacity = "0.6";
+				console.log(todos);
+			} else {
+				todoText.style.textDecoration = "none";
+				todoText.style.opacity = "1";
 			}
 		}
 
