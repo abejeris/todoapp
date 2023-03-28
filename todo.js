@@ -23,10 +23,15 @@ function renderTodos() {
 		todoText.textContent = todo;
 		todoListDiv.append(todoText);
 
+		//mygtuku divas
+		const btnDiv = document.createElement("div");
+		btnDiv.classList.add("btnDiv");
+		todoListDiv.append(btnDiv);
+
 		const deleteBtn = document.createElement("button");
 		deleteBtn.classList.add("deleteBtn");
 		deleteBtn.textContent = "delete";
-		todoListDiv.append(deleteBtn);
+		btnDiv.append(deleteBtn);
 
 		deleteBtn.addEventListener("click", function () {
 			todos.splice(index, 1);
@@ -36,7 +41,7 @@ function renderTodos() {
 		const editBtn = document.createElement("button");
 		editBtn.classList.add("editBtn");
 		editBtn.textContent = "edit";
-		todoListDiv.append(editBtn);
+		btnDiv.append(editBtn);
 
 		editBtn.addEventListener("click", function () {
 			const newTodoText = prompt("Edit your to-do item:", todoText.textContent);
@@ -48,7 +53,9 @@ function renderTodos() {
 		const favIcon = document.createElement("span");
 		favIcon.classList.add("favIcon");
 		favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
-		todoListDiv.append(favIcon);
+
+		btnDiv.append(favIcon);
+
 
 		favIcon.addEventListener("click", function () {
 			if (favIcon.innerHTML === '<i class="fa-regular fa-heart"></i>') {
@@ -57,6 +64,17 @@ function renderTodos() {
 				favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
 			}
 		});
+
+		const checkBox = document.createElement("input");
+		checkBox.classList.add("checkBox");
+		checkBox.setAttribute("type", "checkbox");
+		todoListDiv.prepend(checkBox);
+
+		function check() {
+			if (checkBox.checked) {
+			}
+		}
+
 	});
 }
 
