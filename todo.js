@@ -45,10 +45,18 @@ function renderTodos() {
 			}
 		});
 
-		const favBtn = document.createElement("button");
-		favBtn.classList.add("favBtn");
-		favBtn.textContent = "favorite";
-		todoListDiv.append(favBtn);
+		const favIcon = document.createElement("span");
+		favIcon.classList.add("favIcon");
+		favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+		todoListDiv.append(favIcon);
+
+		favIcon.addEventListener("click", function () {
+			if (favIcon.innerHTML === '<i class="fa-regular fa-heart"></i>') {
+				favIcon.innerHTML = '<i class="fa-solid fa-heart"></i>';
+			} else {
+				favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+			}
+		});
 	});
 }
 
