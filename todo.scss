@@ -41,7 +41,7 @@ body {
 				justify-content: space-between;
 
 				p {
-					margin: 30px;
+					margin: 30px 5px;
 
 					span {
 						font-weight: 600;
@@ -101,6 +101,7 @@ body {
 					font-weight: 600;
 					margin-right: auto;
 					text-align: left;
+					word-break: break-word;
 				}
 				.btnDiv {
 					display: flex;
