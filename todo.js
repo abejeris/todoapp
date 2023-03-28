@@ -18,6 +18,7 @@ function renderTodos() {
 	todos.forEach((todo, index) => {
 		const todoListDiv = document.createElement("div");
 		todoListDiv.classList.add("todoDiv");
+		todoListDiv.setAttribute("data-id", todo);
 		todoListContainer.append(todoListDiv);
 
 		const todoText = document.createElement("span");
@@ -57,14 +58,28 @@ function renderTodos() {
 		const favIcon = document.createElement("span");
 		favIcon.classList.add("favIcon");
 		favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+		// Check the favorite status for the current todo element
+		const todoId = todoListDiv.getAttribute("data-id");
+		if (todosFav.includes(todoId)) {
+			favIcon.innerHTML = '<i class="fa-solid fa-heart"></i>';
+		}
 
 		btnDiv.append(favIcon);
 
 		favIcon.addEventListener("click", function () {
+			const todoId = todoListDiv.getAttribute("data-id"); // Get the unique identifier
+
 			if (favIcon.innerHTML === '<i class="fa-regular fa-heart"></i>') {
 				favIcon.innerHTML = '<i class="fa-solid fa-heart"></i>';
+				todosFav.push(todoId);
+				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 			} else {
 				favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+				const index = todosFav.indexOf(todoId);
+				if (index > -1) {
+					todosFav.splice(index, 1);
+					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+				}
 			}
 		});
 
@@ -81,7 +96,6 @@ function renderTodos() {
 			if (checkBox.checked) {
 				todoText.style.textDecoration = "line-through";
 				todoText.style.opacity = "0.6";
-				console.log(todos);
 			} else {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
