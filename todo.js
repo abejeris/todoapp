@@ -37,6 +37,8 @@ function renderTodos() {
 		btnDiv.append(deleteBtn);
 
 		deleteBtn.addEventListener("click", function () {
+			todosFav.splice(index, 1);
+			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 			todos.splice(index, 1);
 			localStorage.setItem(userTodosKey, JSON.stringify(todos));
 			renderTodos();
