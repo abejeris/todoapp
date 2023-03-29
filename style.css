@@ -82,8 +82,10 @@ body p:not(#errorMessage) a {
   body .container {
     width: 70%;
   }
-  body .container #signupbutton {
+  body .container #signupbutton,
+  body .container #loginbutton {
     height: 40px;
+    border-radius: 5px;
   }
   .form-bottom {
     margin-bottom: 100px;
