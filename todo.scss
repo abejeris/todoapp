@@ -97,6 +97,7 @@ body {
 				padding: 10px;
 				display: flex;
 				justify-content: space-between;
+				align-items: center;
 				border-bottom: 1px solid #cee5d0;
 
 				.checkBox {
@@ -125,6 +126,45 @@ body {
 					}
 					.favIcon {
 						color: #ecb390;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	body {
+		h1 {
+			margin: 25px;
+		}
+		h2 {
+			margin: 15px 20px 70px 20px;
+		}
+		.container {
+			margin: 25px auto;
+			width: 85%;
+
+			#addTodo {
+				#todo {
+					width: 100%;
+					&::placeholder {
+						font-size: 19px;
+					}
+				}
+			}
+			#todoList {
+				.todoDiv {
+					.btnDiv {
+						flex-direction: column;
+						align-items: stretch;
+						justify-content: center;
+
+						.deleteBtn,
+						.editBtn,
+						.favIcon {
+							margin-bottom: 5px;
+						}
 					}
 				}
 			}
