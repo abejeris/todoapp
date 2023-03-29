@@ -4,7 +4,7 @@ const userFavorites = `favorites-${getUser.username}`;
 welcomeUser.textContent = getUser.username;
 
 const userTodosKey = `todos-${getUser.username}`;
-const favTodoKey = `favorites-${getUser.username}`;
+
 let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
 let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
 
@@ -46,6 +46,8 @@ function renderFavorites() {
 		deleteBtn.addEventListener("click", function () {
 			todosFav.splice(index, 1);
 			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+			todos.splice(index, 1);
+			localStorage.setItem(userTodosKey, JSON.stringify(todos));
 			renderFavorites();
 		});
 
@@ -60,7 +62,7 @@ function renderFavorites() {
 				favText.textContent = newTodoText;
 				todos[index] = newTodoText; // Update corresponding todo in the array
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
-				localStorage.setItem(favTodoKey, JSON.stringify(todos));
+				localStorage.setItem(userFavorites, JSON.stringify(todos));
 			}
 		});
 
