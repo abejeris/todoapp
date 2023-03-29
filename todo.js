@@ -52,6 +52,7 @@ function renderTodos() {
 				todoText.textContent = newTodoText;
 				todos[index] = newTodoText; // Update corresponding todo in the array
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
+				localStorage.setItem(userFavorites, JSON.stringify(todos));
 			}
 		});
 

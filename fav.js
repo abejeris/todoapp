@@ -2,11 +2,26 @@ const welcomeUser = document.querySelector("#usernameLogo");
 const getUser = JSON.parse(localStorage.getItem("LoggedInAs"));
 const userFavorites = `favorites-${getUser.username}`;
 welcomeUser.textContent = getUser.username;
-const todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
+
+const userTodosKey = `todos-${getUser.username}`;
+const favTodoKey = `favorites-${getUser.username}`;
+let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
+let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
 
 function renderFavorites() {
 	const favListContainer = document.querySelector("#todoList");
 	favListContainer.innerHTML = ""; // Clear list before rendering
+
+	setTimeout(() => {
+		if (todosFav.length === 0) {
+			const errorMessage = document.createElement("p");
+			errorMessage.setAttribute("id", "errorMessage");
+			errorMessage.style.color = "red";
+			errorMessage.textContent = "You have no favorites.";
+			favListContainer.append(errorMessage);
+			return;
+		}
+	});
 
 	todosFav.forEach((fav, index) => {
 		const favListDiv = document.createElement("div");
@@ -39,6 +54,16 @@ function renderFavorites() {
 		editBtn.textContent = "EDIT";
 		btnDiv.append(editBtn);
 
+		editBtn.addEventListener("click", function () {
+			const newTodoText = prompt("Edit your to-do item:", favText.textContent);
+			if (newTodoText !== null && newTodoText !== "") {
+				favText.textContent = newTodoText;
+				todos[index] = newTodoText; // Update corresponding todo in the array
+				localStorage.setItem(userTodosKey, JSON.stringify(todos));
+				localStorage.setItem(favTodoKey, JSON.stringify(todos));
+			}
+		});
+
 		const heartBtn = document.createElement("span");
 		heartBtn.classList.add("favIcon");
 		heartBtn.innerHTML = '<i class="fa-regular fa-heart"></i>';
@@ -55,4 +80,5 @@ function renderFavorites() {
 		});
 	});
 }
+
 window.onload = renderFavorites;
