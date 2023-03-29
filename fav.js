@@ -10,12 +10,12 @@ function renderFavorites() {
 
 	todosFav.forEach((fav, index) => {
 		const favListDiv = document.createElement("div");
-		favListDiv.classList.add("favDiv");
+		favListDiv.classList.add("todoDiv");
 		favListDiv.setAttribute("data-id", fav);
 		favListContainer.append(favListDiv);
 
 		const favText = document.createElement("span");
-		favText.classList.add("favText");
+		favText.classList.add("todoText");
 		favText.textContent = fav;
 		favListDiv.append(favText);
 
@@ -23,13 +23,24 @@ function renderFavorites() {
 		btnDiv.classList.add("btnDiv");
 		favListDiv.append(btnDiv);
 
+		const deleteBtn = document.createElement("button");
+		deleteBtn.classList.add("deleteBtn");
+		deleteBtn.textContent = "DELETE";
+		btnDiv.append(deleteBtn);
+
+		deleteBtn.addEventListener("click", function () {
+			todosFav.splice(index, 1);
+			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+			renderFavorites();
+		});
+
 		const editBtn = document.createElement("button");
 		editBtn.classList.add("editBtn");
 		editBtn.textContent = "EDIT";
 		btnDiv.append(editBtn);
 
 		const heartBtn = document.createElement("span");
-		heartBtn.classList.add("heartBtn");
+		heartBtn.classList.add("favIcon");
 		heartBtn.innerHTML = '<i class="fa-regular fa-heart"></i>';
 		const todoId = favListDiv.getAttribute("data-id");
 		if (todosFav.includes(todoId)) {
@@ -38,17 +49,6 @@ function renderFavorites() {
 		btnDiv.append(heartBtn);
 
 		heartBtn.addEventListener("click", function () {
-			todosFav.splice(index, 1);
-			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
-			renderFavorites();
-		});
-
-		const deleteBtn = document.createElement("button");
-		deleteBtn.classList.add("deleteBtn");
-		deleteBtn.textContent = "DELETE";
-		btnDiv.append(deleteBtn);
-
-		deleteBtn.addEventListener("click", function () {
 			todosFav.splice(index, 1);
 			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 			renderFavorites();
