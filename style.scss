@@ -76,3 +76,23 @@ body {
 		}
 	}
 }
+
+@media only screen and (max-width: 576px) {
+	body {
+		h1,
+		h2 {
+			margin: 25px;
+		}
+		.container {
+			width: 70%;
+
+			#signupbutton {
+				height: 40px;
+			}
+		}
+	}
+
+	.form-bottom {
+		margin-bottom: 100px;
+	}
+}

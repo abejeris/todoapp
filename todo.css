@@ -91,6 +91,7 @@ body .container #todoList .todoDiv {
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #cee5d0;
 }
 body .container #todoList .todoDiv .checkBox {
@@ -118,4 +119,36 @@ body .container #todoList .todoDiv .btnDiv .editBtn {
 }
 body .container #todoList .todoDiv .btnDiv .favIcon {
   color: #ecb390;
+}
+
+@media only screen and (max-width: 576px) {
+  body h1 {
+    margin: 25px;
+  }
+  body h2 {
+    margin: 15px 20px 70px 20px;
+  }
+  body .container {
+    margin: 25px auto;
+    width: 85%;
+  }
+  body .container #addTodo #todo {
+    width: 100%;
+  }
+  body .container #addTodo #todo::-moz-placeholder {
+    font-size: 19px;
+  }
+  body .container #addTodo #todo::placeholder {
+    font-size: 19px;
+  }
+  body .container #todoList .todoDiv .btnDiv {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+  body .container #todoList .todoDiv .btnDiv .deleteBtn,
+  body .container #todoList .todoDiv .btnDiv .editBtn,
+  body .container #todoList .todoDiv .btnDiv .favIcon {
+    margin-bottom: 5px;
+  }
 }/*# sourceMappingURL=todo.css.map */

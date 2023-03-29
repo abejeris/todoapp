@@ -72,4 +72,20 @@ body p:not(#errorMessage) a {
   text-decoration: none;
   font-weight: 600;
   font-size: 20px;
+}
+
+@media only screen and (max-width: 576px) {
+  body h1,
+  body h2 {
+    margin: 25px;
+  }
+  body .container {
+    width: 70%;
+  }
+  body .container #signupbutton {
+    height: 40px;
+  }
+  .form-bottom {
+    margin-bottom: 100px;
+  }
 }/*# sourceMappingURL=style.css.map */
