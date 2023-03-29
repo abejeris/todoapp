@@ -86,8 +86,10 @@ body {
 		.container {
 			width: 70%;
 
-			#signupbutton {
+			#signupbutton,
+			#loginbutton {
 				height: 40px;
+				border-radius: 5px;
 			}
 		}
 	}
