@@ -38,6 +38,9 @@ signUpForm.addEventListener("submit", function (e) {
 		document.querySelector("#password2").value = "";
 		setTimeout(function () {
 			alert("Account created!");
+			if (confirm("Go to login page") == true) {
+				window.location.href = "index.html";
+			}
 		});
 	}
 });
