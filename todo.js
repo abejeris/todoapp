@@ -37,10 +37,17 @@ function renderTodos() {
 		btnDiv.append(deleteBtn);
 
 		deleteBtn.addEventListener("click", function () {
-			todosFav.splice(index, 1);
-			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
-			todos.splice(index, 1);
-			localStorage.setItem(userTodosKey, JSON.stringify(todos));
+			const todoText = todoListDiv.querySelector(".todoText").textContent;
+			const todoIndex = todos.indexOf(todoText);
+			const favIndex = todosFav.indexOf(todoText);
+			if (todoIndex !== -1) {
+				todos.splice(todoIndex, 1);
+				localStorage.setItem(userTodosKey, JSON.stringify(todos));
+			}
+			if (favIndex !== -1) {
+				todosFav.splice(favIndex, 1);
+				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+			}
 			renderTodos();
 		});
 		const editBtn = document.createElement("button");
@@ -49,12 +56,23 @@ function renderTodos() {
 		btnDiv.append(editBtn);
 
 		editBtn.addEventListener("click", function () {
+			const todoText = todoListDiv.querySelector(".todoText");
 			const newTodoText = prompt("Edit your to-do item:", todoText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
+				// Check if the current todo is in favorites
+				const isTodoInFavorites = todosFav.includes(todoText.textContent);
+
 				todoText.textContent = newTodoText;
-				todos[index] = newTodoText; // Update corresponding todo in the array
+				todos[index] = newTodoText;
+				if (isTodoInFavorites) {
+					const favIndex = todosFav.indexOf(todoId);
+					if (favIndex !== -1) {
+						todosFav[favIndex] = newTodoText;
+						localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+					}
+				}
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
-				localStorage.setItem(userFavorites, JSON.stringify(todos));
+				renderTodos();
 			}
 		});
 
@@ -84,6 +102,8 @@ function renderTodos() {
 					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 				}
 			}
+
+			renderTodos(); // Call renderTodos after updating favorite status
 		});
 
 		const checkBox = document.createElement("input");
