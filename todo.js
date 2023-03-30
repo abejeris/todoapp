@@ -40,14 +40,19 @@ function renderTodos() {
 			const todoText = todoListDiv.querySelector(".todoText").textContent;
 			const todoIndex = todos.indexOf(todoText);
 			const favIndex = todosFav.indexOf(todoText);
+
+			// Search for exact match in todos
 			if (todoIndex !== -1) {
 				todos.splice(todoIndex, 1);
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
 			}
+
+			// Search for exact match in favorites
 			if (favIndex !== -1) {
 				todosFav.splice(favIndex, 1);
 				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 			}
+
 			renderTodos();
 		});
 		const editBtn = document.createElement("button");
