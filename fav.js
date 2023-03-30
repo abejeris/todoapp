@@ -60,9 +60,13 @@ function renderFavorites() {
 			const newTodoText = prompt("Edit your to-do item:", favText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
 				favText.textContent = newTodoText;
-				todos[index] = newTodoText; // Update corresponding todo in the array
+				todos[index] = newTodoText;
+				if (todosFav.includes(fav)) {
+					const favIndex = todosFav.indexOf(fav);
+					todosFav[favIndex] = newTodoText;
+					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+				}
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
-				localStorage.setItem(userFavorites, JSON.stringify(todos));
 			}
 		});
 
