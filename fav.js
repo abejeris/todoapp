@@ -12,16 +12,14 @@ function renderFavorites() {
 	const favListContainer = document.querySelector("#todoList");
 	favListContainer.innerHTML = ""; // Clear list before rendering
 
-	setTimeout(() => {
-		if (todosFav.length === 0) {
-			const errorMessage = document.createElement("p");
-			errorMessage.setAttribute("id", "errorMessage");
-			errorMessage.style.color = "red";
-			errorMessage.textContent = "You have no favorites.";
-			favListContainer.append(errorMessage);
-			return;
-		}
-	});
+	if (todosFav.length === 0) {
+		const errorMessage = document.createElement("p");
+		errorMessage.setAttribute("id", "errorMessage");
+		errorMessage.style.color = "red";
+		errorMessage.textContent = "You have no favorites.";
+		favListContainer.append(errorMessage);
+		return;
+	}
 
 	todosFav.forEach((fav, index) => {
 		const favListDiv = document.createElement("div");
@@ -62,13 +60,13 @@ function renderFavorites() {
 				favText.textContent = newTodoText;
 				if (todosFav.includes(fav)) {
 					const favIndex = todosFav.indexOf(fav);
-					todosFav[favIndex] = newTodoText;
-					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+					todosFav[favIndex] = newTodoText; // Update corresponding favorite in the array
+					localStorage.setItem(userFavorites, JSON.stringify(todosFav)); // Update localStorage with the todosFav array
 					const todoIndex = todos.findIndex((todo) => todo === fav);
 					if (todoIndex !== -1) {
-						// if no such element found .findIndex returns -1
-						todos[todoIndex] = newTodoText;
-						localStorage.setItem(userTodosKey, JSON.stringify(todos));
+						//=== -1 i
+						todos[todoIndex] = newTodoText; //Update corresponding todo in the array
+						localStorage.setItem(userTodosKey, JSON.stringify(todos)); // Update localStorage with the todos array
 					}
 				}
 			}
