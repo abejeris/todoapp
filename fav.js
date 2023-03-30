@@ -60,13 +60,17 @@ function renderFavorites() {
 			const newTodoText = prompt("Edit your to-do item:", favText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
 				favText.textContent = newTodoText;
-				todos[index] = newTodoText;
 				if (todosFav.includes(fav)) {
 					const favIndex = todosFav.indexOf(fav);
 					todosFav[favIndex] = newTodoText;
 					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+					const todoIndex = todos.findIndex((todo) => todo === fav);
+					if (todoIndex !== -1) {
+						// if no such element found .findIndex returns -1
+						todos[todoIndex] = newTodoText;
+						localStorage.setItem(userTodosKey, JSON.stringify(todos));
+					}
 				}
-				localStorage.setItem(userTodosKey, JSON.stringify(todos));
 			}
 		});
 
