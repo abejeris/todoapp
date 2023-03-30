@@ -42,11 +42,18 @@ function renderFavorites() {
 		btnDiv.append(deleteBtn);
 
 		deleteBtn.addEventListener("click", function () {
-			todosFav.splice(index, 1);
-			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
-			todos.splice(index, 1);
-			localStorage.setItem(userTodosKey, JSON.stringify(todos));
-			renderFavorites();
+			const fav = favText.textContent;
+			const filteredFav = todosFav.filter((todo) => todo !== fav); // Filter out the exact match from todosFav array
+			if (filteredFav.length !== todosFav.length) {
+				todosFav = filteredFav;
+				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+				const filteredTodos = todos.filter((todo) => todo !== fav); // Filter out the exact match from todos array
+				if (filteredTodos.length !== todos.length) {
+					todos = filteredTodos;
+					localStorage.setItem(userTodosKey, JSON.stringify(todos));
+				}
+				renderFavorites();
+			}
 		});
 
 		const editBtn = document.createElement("button");
