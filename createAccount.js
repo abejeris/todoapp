@@ -36,6 +36,8 @@ signUpForm.addEventListener("submit", function (e) {
 		document.querySelector("#name").value = "";
 		document.querySelector("#password").value = "";
 		document.querySelector("#password2").value = "";
+		errorMessage.textContent = "";
+
 		setTimeout(function () {
 			alert("Account created!");
 			if (confirm("Go to login page") == true) {
