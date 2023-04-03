@@ -137,13 +137,23 @@ function renderTodos() {
 			} else {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
+
 				const checkedId = todoListDiv.getAttribute("data-id");
 				const index = checked.indexOf(checkedId);
+
 				if (index > -1) {
 					checked.splice(index, 1);
 					localStorage.setItem(userChecked, JSON.stringify(checked));
 				}
 			}
+		}
+
+		const tickedId = todoListDiv.getAttribute("data-id");
+		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
+		if (ticked.includes(tickedId)) {
+			checkBox.checked = true;
+			todoText.style.textDecoration = "line-through";
+			todoText.style.opacity = "0.6";
 		}
 
 		const tickedId = todoListDiv.getAttribute("data-id");
