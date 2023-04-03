@@ -1,0 +1,14 @@
+{
+	"name": "todoapp",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:abejeris/todoapp.git",
+	"author": "Audrius Bejeris <audriusbejeris@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"jest": "^29.5.0"
+	},
+	"scripts": {
+		"test": "jest"
+	}
+}
