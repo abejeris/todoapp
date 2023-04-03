@@ -42,6 +42,7 @@ function renderTodos() {
 			const todoText = todoListDiv.querySelector(".todoText").textContent;
 			const todoIndex = todos.indexOf(todoText);
 			const favIndex = todosFav.indexOf(todoText);
+			const checkedIndex = checked.indexOf(todoText);
 
 			// Search for exact match in todos
 			if (todoIndex !== -1) {
@@ -53,6 +54,11 @@ function renderTodos() {
 			if (favIndex !== -1) {
 				todosFav.splice(favIndex, 1);
 				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+			}
+
+			if (checkedIndex !== -1) {
+				checked.splice(checkedIndex, 1);
+				localStorage.setItem(userChecked, JSON.stringify(checked));
 			}
 
 			renderTodos();
@@ -133,20 +139,22 @@ function renderTodos() {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
 				let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
-				console.log(checked);
 				const checkedId = todoListDiv.getAttribute("data-id");
-				console.log(checkedId);
 				const index = checked.indexOf(checkedId);
 				if (index > -1) {
 					checked.splice(index, 1);
-					console.log(checked);
 					localStorage.setItem(userChecked, JSON.stringify(checked));
 				}
 			}
+			renderTodos();
 		}
-		const checkedId = todoListDiv.getAttribute("data-id");
-		if (checked.includes(checkedId)) {
+
+		const tickedId = todoListDiv.getAttribute("data-id");
+		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
+		if (ticked.includes(tickedId)) {
 			checkBox.checked = true;
+			todoText.style.textDecoration = "line-through";
+			todoText.style.opacity = "0.6";
 		}
 	});
 }
