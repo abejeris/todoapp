@@ -17,7 +17,7 @@ function renderTodos() {
 	const todoListContainer = document.querySelector("#todoList");
 	todoListContainer.innerHTML = ""; // Clear list before rendering
 
-	todos.forEach((todo, index) => {
+	todos.forEach((todo) => {
 		const todoListDiv = document.createElement("div");
 		todoListDiv.classList.add("todoDiv");
 		todoListDiv.setAttribute("data-id", todo);
@@ -147,15 +147,6 @@ function renderTodos() {
 			}
 			renderTodos();
 		}
-
-		const tickedId = todoListDiv.getAttribute("data-id");
-		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
-		if (ticked.includes(tickedId)) {
-			checkBox.checked = true;
-			todoText.style.textDecoration = "line-through";
-			todoText.style.opacity = "0.6";
-		}
-
 		const tickedId = todoListDiv.getAttribute("data-id");
 		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
 		if (ticked.includes(tickedId)) {
@@ -180,3 +171,4 @@ addBtn.addEventListener("click", function (e) {
 		todoInput.value = "";
 	}
 });
+module.exports = { renderTodos };
