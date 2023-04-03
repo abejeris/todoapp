@@ -7,6 +7,7 @@ const addBtn = document.querySelector("#add");
 
 const userTodosKey = `todos-${getUser.username}`; // Use username as part of key
 const userFavorites = `favorites-${getUser.username}`; //use username as part of key for favorite todos
+const userChecked = `checked-${getUser.username}`; // use username as part of key for checked todos
 
 let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
 let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
@@ -124,9 +125,22 @@ function renderTodos() {
 			if (checkBox.checked) {
 				todoText.style.textDecoration = "line-through";
 				todoText.style.opacity = "0.6";
+				let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
+				checked.push(todoId);
+				localStorage.setItem(userChecked, JSON.stringify(checked));
 			} else {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
+				let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
+				console.log(checked);
+				const checkedId = todoListDiv.getAttribute("data-id");
+				console.log(checkedId);
+				const index = checked.indexOf(checkedId);
+				if (index > -1) {
+					checked.splice(index, 1);
+					console.log(checked);
+					localStorage.setItem(userChecked, JSON.stringify(checked));
+				}
 			}
 		}
 	});
