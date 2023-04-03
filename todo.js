@@ -11,6 +11,7 @@ const userChecked = `checked-${getUser.username}`; // use username as part of ke
 
 let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
 let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
+let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
 
 function renderTodos() {
 	const todoListContainer = document.querySelector("#todoList");
@@ -142,6 +143,10 @@ function renderTodos() {
 					localStorage.setItem(userChecked, JSON.stringify(checked));
 				}
 			}
+		}
+		const checkedId = todoListDiv.getAttribute("data-id");
+		if (checked.includes(checkedId)) {
+			checkBox.checked = true;
 		}
 	});
 }
