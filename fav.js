@@ -5,8 +5,11 @@ welcomeUser.textContent = getUser.username;
 
 const userTodosKey = `todos-${getUser.username}`;
 
+const userChecked = `checked-${getUser.username}`;
+
 let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
 let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
+let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
 
 function renderFavorites() {
 	const favListContainer = document.querySelector("#todoList");
@@ -43,6 +46,9 @@ function renderFavorites() {
 
 		deleteBtn.addEventListener("click", function () {
 			const fav = favText.textContent;
+			// adding checked tasks deletion from local storage
+			const checkedIndex = checked.indexOf(fav);
+			console.log(checkedIndex);
 			const filteredFav = todosFav.filter((todo) => todo !== fav); // Filter out the exact match from todosFav array
 			if (filteredFav.length !== todosFav.length) {
 				todosFav = filteredFav;
@@ -52,6 +58,12 @@ function renderFavorites() {
 					todos = filteredTodos;
 					localStorage.setItem(userTodosKey, JSON.stringify(todos));
 				}
+
+				if (checkedIndex !== -1) {
+					checked.splice(checkedIndex, 1);
+					localStorage.setItem(userChecked, JSON.stringify(checked));
+				}
+
 				renderFavorites();
 			}
 		});
@@ -93,6 +105,41 @@ function renderFavorites() {
 			localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 			renderFavorites();
 		});
+
+		const checkBox = document.createElement("input");
+		checkBox.classList.add("checkBox");
+		checkBox.setAttribute("type", "checkbox");
+		favListDiv.prepend(checkBox);
+
+		checkBox.addEventListener("change", function () {
+			check();
+		});
+
+		function check() {
+			if (checkBox.checked) {
+				favText.style.textDecoration = "line-through";
+				favText.style.opacity = "0.6";
+				checked.push(todoId);
+				localStorage.setItem(userChecked, JSON.stringify(checked));
+			} else {
+				favText.style.textDecoration = "none";
+				favText.style.opacity = "1";
+				const checkedId = favListDiv.getAttribute("data-id");
+				const index = checked.indexOf(checkedId);
+				if (index > -1) {
+					checked.splice(index, 1);
+					localStorage.setItem(userChecked, JSON.stringify(checked));
+				}
+			}
+		}
+
+		const tickedId = favListDiv.getAttribute("data-id");
+		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
+		if (ticked.includes(tickedId)) {
+			checkBox.checked = true;
+			favText.style.textDecoration = "line-through";
+			favText.style.opacity = "0.6";
+		}
 	});
 }
 
