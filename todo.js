@@ -132,21 +132,28 @@ function renderTodos() {
 			if (checkBox.checked) {
 				todoText.style.textDecoration = "line-through";
 				todoText.style.opacity = "0.6";
-				let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
 				checked.push(todoId);
 				localStorage.setItem(userChecked, JSON.stringify(checked));
 			} else {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
-				let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
-				const checkedId = todoListDiv.getAttribute("data-id");
-				const index = checked.indexOf(checkedId);
+
+				const index = checked.indexOf(todoId);
+
 				if (index > -1) {
 					checked.splice(index, 1);
 					localStorage.setItem(userChecked, JSON.stringify(checked));
 				}
 			}
 			renderTodos();
+		}
+
+		const tickedId = todoListDiv.getAttribute("data-id");
+		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
+		if (ticked.includes(tickedId)) {
+			checkBox.checked = true;
+			todoText.style.textDecoration = "line-through";
+			todoText.style.opacity = "0.6";
 		}
 
 		const tickedId = todoListDiv.getAttribute("data-id");
