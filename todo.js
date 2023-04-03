@@ -138,14 +138,14 @@ function renderTodos() {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
 
-				const index = checked.indexOf(todoId);
+				const checkedId = todoListDiv.getAttribute("data-id");
+				const index = checked.indexOf(checkedId);
 
 				if (index > -1) {
 					checked.splice(index, 1);
 					localStorage.setItem(userChecked, JSON.stringify(checked));
 				}
 			}
-			renderTodos();
 		}
 
 		const tickedId = todoListDiv.getAttribute("data-id");
