@@ -1,154 +1,154 @@
 * {
-	margin: 0;
-	padding: 0;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
-	background-color: #cee5d0;
+  background-color: #cee5d0;
 }
 body h1,
 body h2 {
-	color: #94b49f;
-	text-align: center;
-	margin: 50px;
+  color: #94b49f;
+  text-align: center;
+  margin: 50px;
 }
 body h1 a,
 body h2 a {
-	text-decoration: none;
-	color: #94b49f;
+  text-decoration: none;
+  color: #94b49f;
 }
 body .container {
-	background-color: #fcf8e8;
-	color: #94b49f;
-	display: flex;
-	flex-direction: column;
-	width: 70%;
-	max-width: 800px;
-	align-items: center;
-	margin: 50px auto;
-	text-align: center;
-	border-radius: 10px;
-	box-shadow: 0px 0px 33px 0px #94b49f;
-	padding: 0px 20px 40px 20px;
+  background-color: #fcf8e8;
+  color: #94b49f;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  max-width: 800px;
+  align-items: center;
+  margin: 50px auto;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 33px 0px #94b49f;
+  padding: 0px 20px 40px 20px;
 }
 body .container #addTodo {
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-	border-radius: 10px;
-	width: 100%;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  align-items: center;
 }
 body .container #addTodo .user {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 body .container #addTodo .user p {
-	margin: 30px 5px;
+  margin: 30px 5px;
 }
 body .container #addTodo .user p span {
-	font-weight: 600;
+  font-weight: 600;
 }
 body .container #addTodo .user p a {
-	text-decoration: none;
-	color: #94b49f;
-	font-weight: 600;
+  text-decoration: none;
+  color: #94b49f;
+  font-weight: 600;
 }
 body .container #addTodo input {
-	width: 70%;
-	line-height: 30px;
-	border: 1px solid #ecb390;
-	border-radius: 5px;
-	padding: 10px;
-	font-size: 20px;
-	margin-bottom: 20px;
-	min-width: 160px;
-	color: #94b49f;
+  width: 70%;
+  line-height: 30px;
+  border: 1px solid #ecb390;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  min-width: 160px;
+  color: #94b49f;
 }
 body .container #addTodo input::-moz-placeholder {
-	color: #ecb390;
+  color: #ecb390;
 }
 body .container #addTodo input::placeholder {
-	color: #ecb390;
+  color: #ecb390;
 }
 body .container #addTodo button {
-	line-height: 30px;
-	border: 1px solid #ecb390;
-	border-radius: 5px;
-	padding: 10px;
-	font-size: 20px;
-	background-color: #ecb390;
-	color: #fcf8e8;
-	font-weight: 600;
+  line-height: 30px;
+  border: 1px solid #ecb390;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #ecb390;
+  color: #fcf8e8;
+  font-weight: 600;
 }
 body .container #todoList {
-	color: #94b49f;
-	width: 100%;
+  color: #94b49f;
+  width: 100%;
 }
 body .container #todoList .todoDiv {
-	padding: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-bottom: 1px solid #cee5d0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cee5d0;
 }
 body .container #todoList .todoDiv .checkBox {
-	margin-right: 20px;
+  margin-right: 20px;
 }
 body .container #todoList .todoDiv .todoText {
-	font-weight: 600;
-	margin-right: auto;
-	text-align: left;
-	word-break: break-word;
+  font-weight: 600;
+  margin-right: auto;
+  text-align: left;
+  word-break: break-word;
 }
 body .container #todoList .todoDiv .btnDiv {
-	display: flex;
-	align-items: center;
-	margin-left: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }
 body .container #todoList .todoDiv .btnDiv .deleteBtn,
 body .container #todoList .todoDiv .btnDiv .editBtn {
-	background-color: #ecb390;
-	color: #fcf8e8;
-	border: 1px solid #ecb390;
-	border-radius: 3px;
-	margin-right: 5px;
-	padding: 0px 5px;
+  background-color: #ecb390;
+  color: #fcf8e8;
+  border: 1px solid #ecb390;
+  border-radius: 3px;
+  margin-right: 5px;
+  padding: 0px 5px;
 }
 body .container #todoList .todoDiv .btnDiv .favIcon {
-	color: #ecb390;
+  color: #ecb390;
 }
 
 @media only screen and (max-width: 576px) {
-	body h1 {
-		margin: 25px;
-	}
-	body h2 {
-		margin: 15px 20px 70px 20px;
-	}
-	body .container {
-		margin: 25px auto;
-		width: 85%;
-	}
-	body .container #addTodo #todo {
-		width: 100%;
-	}
-	body .container #addTodo #todo::-moz-placeholder {
-		font-size: 19px;
-	}
-	body .container #addTodo #todo::placeholder {
-		font-size: 19px;
-	}
-	body .container #todoList .todoDiv .btnDiv {
-		flex-direction: column;
-		align-items: stretch;
-		justify-content: center;
-	}
-	body .container #todoList .todoDiv .btnDiv .deleteBtn,
-	body .container #todoList .todoDiv .btnDiv .editBtn,
-	body .container #todoList .todoDiv .btnDiv .favIcon {
-		margin-bottom: 5px;
-	}
-} /*# sourceMappingURL=todo.css.map */
+  body h1 {
+    margin: 25px;
+  }
+  body h2 {
+    margin: 15px 20px 70px 20px;
+  }
+  body .container {
+    margin: 25px auto;
+    width: 85%;
+  }
+  body .container #addTodo #todo {
+    width: 100%;
+  }
+  body .container #addTodo #todo::-moz-placeholder {
+    font-size: 19px;
+  }
+  body .container #addTodo #todo::placeholder {
+    font-size: 19px;
+  }
+  body .container #todoList .todoDiv .btnDiv {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+  body .container #todoList .todoDiv .btnDiv .deleteBtn,
+  body .container #todoList .todoDiv .btnDiv .editBtn,
+  body .container #todoList .todoDiv .btnDiv .favIcon {
+    margin-bottom: 5px;
+  }
+}/*# sourceMappingURL=todo.css.map */
