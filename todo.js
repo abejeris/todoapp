@@ -72,16 +72,21 @@ function renderTodos() {
 			const todoText = todoListDiv.querySelector(".todoText");
 			const newTodoText = prompt("Edit your to-do item:", todoText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
-				// Check if the current todo is in favorites
+				// Check if the current todo is in favorites and is checked
 				const isTodoInFavorites = todosFav.includes(todoText.textContent);
-
+				const isTodoChecked = checked.includes(todoText.textContent);
 				todoText.textContent = newTodoText;
 				todos[index] = newTodoText;
-				if (isTodoInFavorites) {
+				if (isTodoInFavorites && isTodoChecked) {
 					const favIndex = todosFav.indexOf(todoId);
+					const checkedIndex = checked.indexOf(todoId);
 					if (favIndex !== -1) {
 						todosFav[favIndex] = newTodoText;
 						localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+					}
+					if (checkedIndex !== -1) {
+						checked[checkedIndex] = newTodoText;
+						localStorage.setItem(userChecked, JSON.stringify(checked));
 					}
 				}
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
