@@ -155,14 +155,6 @@ function renderTodos() {
 			todoText.style.textDecoration = "line-through";
 			todoText.style.opacity = "0.6";
 		}
-
-		const tickedId = todoListDiv.getAttribute("data-id");
-		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
-		if (ticked.includes(tickedId)) {
-			checkBox.checked = true;
-			todoText.style.textDecoration = "line-through";
-			todoText.style.opacity = "0.6";
-		}
 	});
 }
 
