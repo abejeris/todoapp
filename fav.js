@@ -77,10 +77,13 @@ function renderFavorites() {
 			const newTodoText = prompt("Edit your to-do item:", favText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
 				favText.textContent = newTodoText;
-				if (todosFav.includes(fav)) {
+				if (todosFav.includes(fav) && checked.includes(fav)) {
 					const favIndex = todosFav.indexOf(fav);
+					const checkedIndex = checked.indexOf(fav);
 					todosFav[favIndex] = newTodoText; // Update corresponding favorite in the array
+					checked[checkedIndex] = newTodoText;
 					localStorage.setItem(userFavorites, JSON.stringify(todosFav)); // Update localStorage with the todosFav array
+					localStorage.setItem(userChecked, JSON.stringify(checked));
 					const todoIndex = todos.findIndex((todo) => todo === fav);
 					if (todoIndex !== -1) {
 						//=== -1 i
@@ -88,6 +91,7 @@ function renderFavorites() {
 						localStorage.setItem(userTodosKey, JSON.stringify(todos)); // Update localStorage with the todos array
 					}
 				}
+				renderFavorites();
 			}
 		});
 
