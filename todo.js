@@ -77,13 +77,16 @@ function renderTodos() {
 				const isTodoChecked = checked.includes(todoText.textContent);
 				todoText.textContent = newTodoText;
 				todos[index] = newTodoText;
-				if (isTodoInFavorites && isTodoChecked) {
+				if (isTodoInFavorites) {
 					const favIndex = todosFav.indexOf(todoId);
-					const checkedIndex = checked.indexOf(todoId);
+
 					if (favIndex !== -1) {
 						todosFav[favIndex] = newTodoText;
 						localStorage.setItem(userFavorites, JSON.stringify(todosFav));
 					}
+				}
+				if (isTodoChecked) {
+					const checkedIndex = checked.indexOf(todoId);
 					if (checkedIndex !== -1) {
 						checked[checkedIndex] = newTodoText;
 						localStorage.setItem(userChecked, JSON.stringify(checked));
