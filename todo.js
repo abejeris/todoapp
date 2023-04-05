@@ -1,6 +1,7 @@
 const welcomeUser = document.querySelector("#usernameLogo");
 const getUser = JSON.parse(localStorage.getItem("LoggedInAs"));
 welcomeUser.textContent = getUser.username;
+
 const todoInput = document.querySelector("#todo");
 const addBtn = document.querySelector("#add");
 
@@ -8,204 +9,171 @@ const userTodosKey = `todos-${getUser.username}`; // Use username as part of key
 const userFavorites = `favorites-${getUser.username}`; //use username as part of key for favorite todos
 const userChecked = `checked-${getUser.username}`; // use username as part of key for checked todos
 
-let todos = [];
-let todosFav = [];
-let checked = [];
-
-function loadLocalStorageData() {
-	todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
-	todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
-	checked = JSON.parse(localStorage.getItem(userChecked)) || [];
-	const todoListDivs = document.querySelectorAll(".todoDiv");
-}
-function saveToLocalStorage() {
-	localStorage.setItem(userTodosKey, JSON.stringify(todos));
-	localStorage.setItem(userFavorites, JSON.stringify(todosFav));
-	localStorage.setItem(userChecked, JSON.stringify(checked));
-}
-
-function init() {
-	loadLocalStorageData();
-	renderTodos();
-}
+let todos = JSON.parse(localStorage.getItem(userTodosKey)) || [];
+let todosFav = JSON.parse(localStorage.getItem(userFavorites)) || [];
+let checked = JSON.parse(localStorage.getItem(userChecked)) || [];
 
 function renderTodos() {
 	const todoListContainer = document.querySelector("#todoList");
 	todoListContainer.innerHTML = ""; // Clear list before rendering
 
 	todos.forEach((todo, index) => {
-		const todoListDiv = createTodoListDiv(todo, index);
+		const todoListDiv = document.createElement("div");
+		todoListDiv.classList.add("todoDiv");
+		todoListDiv.setAttribute("data-id", todo);
 		todoListContainer.append(todoListDiv);
-	});
-}
 
-function createTodoListDiv(todo, index) {
-	const todoListDiv = document.createElement("div");
-	todoListDiv.classList.add("todoDiv");
-	todoListDiv.setAttribute("data-id", todo);
+		const todoText = document.createElement("span");
+		todoText.classList.add("todoText");
+		todoText.textContent = todo;
+		todoListDiv.append(todoText);
 
-	const checkBox = createCheckBox(todoListDiv, todo);
-	todoListDiv.prepend(checkBox);
+		//mygtuku divas
+		const btnDiv = document.createElement("div");
+		btnDiv.classList.add("btnDiv");
+		todoListDiv.append(btnDiv);
 
-	const todoText = createTodoText(todo);
-	todoListDiv.append(todoText);
+		const deleteBtn = document.createElement("button");
+		deleteBtn.classList.add("deleteBtn");
+		deleteBtn.textContent = "DELETE";
+		btnDiv.append(deleteBtn);
 
-	const btnDiv = document.createElement("div");
-	btnDiv.classList.add("btnDiv");
-	todoListDiv.append(btnDiv);
+		deleteBtn.addEventListener("click", function () {
+			const todoText = todoListDiv.querySelector(".todoText").textContent;
+			const todoIndex = todos.indexOf(todoText);
+			const favIndex = todosFav.indexOf(todoText);
+			const checkedIndex = checked.indexOf(todoText);
 
-	const deleteBtn = createDeleteButton(todoListDiv);
-	btnDiv.append(deleteBtn);
+			// Search for exact match in todos
+			if (todoIndex !== -1) {
+				todos.splice(todoIndex, 1);
+				localStorage.setItem(userTodosKey, JSON.stringify(todos));
+			}
 
-	const editBtn = createEditButton(todoListDiv, todo, index);
-	btnDiv.append(editBtn);
+			// Search for exact match in favorites
+			if (favIndex !== -1) {
+				todosFav.splice(favIndex, 1);
+				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+			}
 
-	const favIcon = createFavoriteIcon(todoListDiv, index);
-	btnDiv.append(favIcon);
+			if (checkedIndex !== -1) {
+				checked.splice(checkedIndex, 1);
+				localStorage.setItem(userChecked, JSON.stringify(checked));
+			}
 
-	checkBox.addEventListener("change", function () {
-		check(todoListDiv, todo);
-	});
+			renderTodos();
+		});
+		const editBtn = document.createElement("button");
+		editBtn.classList.add("editBtn");
+		editBtn.textContent = "EDIT";
+		btnDiv.append(editBtn);
 
-	return todoListDiv;
-}
+		editBtn.addEventListener("click", function () {
+			const todoText = todoListDiv.querySelector(".todoText");
+			const newTodoText = prompt("Edit your to-do item:", todoText.textContent);
+			if (newTodoText !== null && newTodoText !== "") {
+				// Check if the current todo is in favorites and is checked
+				const isTodoInFavorites = todosFav.includes(todoText.textContent);
+				const isTodoChecked = checked.includes(todoText.textContent);
+				todoText.textContent = newTodoText;
+				todos[index] = newTodoText;
+				if (isTodoInFavorites && isTodoChecked) {
+					const favIndex = todosFav.indexOf(todoId);
+					const checkedIndex = checked.indexOf(todoId);
+					if (favIndex !== -1) {
+						todosFav[favIndex] = newTodoText;
+						localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+					}
+					if (checkedIndex !== -1) {
+						checked[checkedIndex] = newTodoText;
+						localStorage.setItem(userChecked, JSON.stringify(checked));
+					}
+				}
+				localStorage.setItem(userTodosKey, JSON.stringify(todos));
+				renderTodos();
+			}
+		});
 
-function createTodoText(todo) {
-	const todoText = document.createElement("span");
-	todoText.classList.add("todoText");
-	todoText.textContent = todo;
-	return todoText;
-}
-
-function createDeleteButton(todoListDiv) {
-	const deleteBtn = document.createElement("button");
-	deleteBtn.classList.add("deleteBtn");
-	deleteBtn.textContent = "DELETE";
-
-	deleteBtn.addEventListener("click", function () {
-		const todoText = todoListDiv.querySelector(".todoText").textContent;
-		const todoIndex = todos.indexOf(todoText);
-		const favIndex = todosFav.indexOf(todoText);
-		const checkedIndex = checked.indexOf(todoText);
-
-		if (todoIndex !== -1) {
-			todos.splice(todoIndex, 1);
-			saveToLocalStorage();
+		const favIcon = document.createElement("span");
+		favIcon.classList.add("favIcon");
+		favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+		// Check the favorite status for the current todo element
+		const todoId = todoListDiv.getAttribute("data-id");
+		if (todosFav.includes(todoId)) {
+			favIcon.innerHTML = '<i class="fa-solid fa-heart"></i>';
 		}
 
-		if (favIndex !== -1) {
-			todosFav.splice(favIndex, 1);
-			saveToLocalStorage();
-		}
+		btnDiv.append(favIcon);
 
-		if (checkedIndex !== -1) {
-			checked.splice(checkedIndex, 1);
-			saveToLocalStorage();
-		}
+		favIcon.addEventListener("click", function () {
+			const todoId = todoListDiv.getAttribute("data-id"); // Get the unique identifier
 
-		renderTodos();
-	});
+			if (favIcon.innerHTML === '<i class="fa-regular fa-heart"></i>') {
+				favIcon.innerHTML = '<i class="fa-solid fa-heart"></i>';
+				todosFav.push(todoId);
+				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+			} else {
+				favIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
+				const index = todosFav.indexOf(todoId);
+				if (index > -1) {
+					todosFav.splice(index, 1);
+					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+				}
+			}
 
-	return deleteBtn;
-}
+			renderTodos(); // Call renderTodos after updating favorite status
+		});
 
-function createEditButton(todoListDiv, todo, index) {
-	const editBtn = document.createElement("button");
-	editBtn.classList.add("editBtn");
-	editBtn.textContent = "EDIT";
+		const checkBox = document.createElement("input");
+		checkBox.classList.add("checkBox");
+		checkBox.setAttribute("type", "checkbox");
+		todoListDiv.prepend(checkBox);
 
-	editBtn.addEventListener("click", function () {
-		const todoText = todoListDiv.querySelector(".todoText");
-		const newTodoText = prompt("Edit the todo:", todo);
-		if (newTodoText !== null && newTodoText !== "") {
-			todos[index] = newTodoText;
-			todoText.textContent = newTodoText;
-			saveToLocalStorage();
-		}
-	});
+		checkBox.addEventListener("change", function () {
+			check();
+		});
 
-	return editBtn;
-}
+		function check() {
+			if (checkBox.checked) {
+				todoText.style.textDecoration = "line-through";
+				todoText.style.opacity = "0.6";
+				checked.push(todoId);
+				localStorage.setItem(userChecked, JSON.stringify(checked));
+			} else {
+				todoText.style.textDecoration = "none";
+				todoText.style.opacity = "1";
 
-function createFavoriteIcon(todoListDiv, index) {
-	const favIcon = document.createElement("i");
-	favIcon.classList.add("fa-heart");
+				const checkedId = todoListDiv.getAttribute("data-id");
+				const index = checked.indexOf(checkedId);
 
-	if (todosFav.includes(todos[index])) {
-		favIcon.classList.add("fa-solid");
-	} else {
-		favIcon.classList.add("fa-regular");
-	}
-
-	favIcon.addEventListener("click", function () {
-		if (todosFav.includes(todos[index])) {
-			const favIndex = todosFav.indexOf(todos[index]);
-			todosFav.splice(favIndex, 1);
-			favIcon.classList.remove("fa-solid");
-			favIcon.classList.add("fa-regular");
-		} else {
-			todosFav.push(todos[index]);
-			favIcon.classList.remove("fa-regular");
-			favIcon.classList.add("fa-solid");
-		}
-		saveToLocalStorage();
-	});
-
-	return favIcon;
-}
-function createCheckBox(todoListDiv, todo, todoText) {
-	const checkBox = document.createElement("input");
-	checkBox.setAttribute("type", "checkbox");
-	checkBox.classList.add("checkBox");
-
-	if (checked.includes(todo)) {
-		checkBox.checked = true;
-		todoListDiv.classList.add("checked");
-	} else {
-		todoListDiv.classList.remove("checked");
-	}
-
-	checkBox.addEventListener("change", function () {
-		if (checkBox.checked) {
-			checked.push(todo);
-			todoListDiv.classList.add("checked");
-		} else {
-			const index = checked.indexOf(todo);
-			if (index !== -1) {
-				checked.splice(index, 1);
-				todoListDiv.classList.remove("checked");
+				if (index > -1) {
+					checked.splice(index, 1);
+					localStorage.setItem(userChecked, JSON.stringify(checked));
+				}
 			}
 		}
-		saveToLocalStorage();
+
+		const tickedId = todoListDiv.getAttribute("data-id");
+		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
+		if (ticked.includes(tickedId)) {
+			checkBox.checked = true;
+			todoText.style.textDecoration = "line-through";
+			todoText.style.opacity = "0.6";
+		}
 	});
-
-	return checkBox;
 }
 
-function check(todoListDiv, todo) {
-	const checkBox = todoListDiv.querySelector(".checkBox");
-	const todoText = todoListDiv.querySelector(".todoText");
-	if (checked.includes(todo)) {
-		todoListDiv.classList.add("checked");
-	} else {
-		todoListDiv.classList.remove("checked");
-	}
+renderTodos();
 
-	if (checkBox.checked) {
-		checked.push(todo);
-	} else {
-		checked.splice(checked.indexOf(todo), 1);
-	}
-}
+addBtn.addEventListener("click", function (e) {
+	e.preventDefault();
 
-addBtn.addEventListener("click", function () {
-	const todoText = todoInput.value.trim();
-	if (todoText !== "") {
-		todos.push(todoText);
-		saveToLocalStorage();
+	const newTodo = todoInput.value.trim();
+
+	if (newTodo) {
+		todos.push(newTodo);
+		localStorage.setItem(userTodosKey, JSON.stringify(todos));
 		renderTodos();
 		todoInput.value = "";
 	}
 });
-
-init();
