@@ -17,7 +17,7 @@ function renderTodos() {
 	const todoListContainer = document.querySelector("#todoList");
 	todoListContainer.innerHTML = ""; // Clear list before rendering
 
-	todos.forEach((todo, index) => {
+	todos.forEach((todo) => {
 		const todoListDiv = document.createElement("div");
 		todoListDiv.classList.add("todoDiv");
 		todoListDiv.setAttribute("data-id", todo);
@@ -38,31 +38,34 @@ function renderTodos() {
 		deleteBtn.textContent = "DELETE";
 		btnDiv.append(deleteBtn);
 
-		deleteBtn.addEventListener("click", function () {
-			const todoText = todoListDiv.querySelector(".todoText").textContent;
-			const todoIndex = todos.indexOf(todoText);
-			const favIndex = todosFav.indexOf(todoText);
-			const checkedIndex = checked.indexOf(todoText);
+		const deleteFunc = function () {
+			deleteBtn.addEventListener("click", function () {
+				const todoText = todoListDiv.querySelector(".todoText").textContent;
+				const todoIndex = todos.indexOf(todoText);
+				const favIndex = todosFav.indexOf(todoText);
+				const checkedIndex = checked.indexOf(todoText);
 
-			// Search for exact match in todos
-			if (todoIndex !== -1) {
-				todos.splice(todoIndex, 1);
-				localStorage.setItem(userTodosKey, JSON.stringify(todos));
-			}
+				// Search for exact match in todos
+				if (todoIndex !== -1) {
+					todos.splice(todoIndex, 1);
+					localStorage.setItem(userTodosKey, JSON.stringify(todos));
+				}
 
-			// Search for exact match in favorites
-			if (favIndex !== -1) {
-				todosFav.splice(favIndex, 1);
-				localStorage.setItem(userFavorites, JSON.stringify(todosFav));
-			}
+				// Search for exact match in favorites
+				if (favIndex !== -1) {
+					todosFav.splice(favIndex, 1);
+					localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+				}
 
-			if (checkedIndex !== -1) {
-				checked.splice(checkedIndex, 1);
-				localStorage.setItem(userChecked, JSON.stringify(checked));
-			}
+				if (checkedIndex !== -1) {
+					checked.splice(checkedIndex, 1);
+					localStorage.setItem(userChecked, JSON.stringify(checked));
+				}
 
-			renderTodos();
-		});
+				renderTodos();
+			});
+		};
+		deleteFunc();
 		const editBtn = document.createElement("button");
 		editBtn.classList.add("editBtn");
 		editBtn.textContent = "EDIT";
@@ -180,3 +183,4 @@ addBtn.addEventListener("click", function (e) {
 		todoInput.value = "";
 	}
 });
+module.exports = deleteFunc();
