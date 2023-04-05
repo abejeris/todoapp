@@ -7,13 +7,21 @@
 	"license": "MIT",
 	"dependencies": {
 		"jest": "^29.5.0",
+<<<<<<< Updated upstream
 		"jsdom": "^21.1.1"
+=======
+		"jest-environment-jsdom": "^29.5.0"
+>>>>>>> Stashed changes
 	},
 	"scripts": {
 		"test": "jest"
 	},
 	"devDependencies": {
+<<<<<<< Updated upstream
 		"@babel/preset-env": "^7.21.4",
 		"mock-local-storage": "^1.1.23"
+=======
+		"@babel/preset-env": "^7.21.4"
+>>>>>>> Stashed changes
 	}
 }

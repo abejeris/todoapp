@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { JSDOM } from "jsdom";
 // const dom = new JSDOM;
 // Set up a basic DOM environment with a document object
@@ -17,16 +18,23 @@ const localStorage = {
 
 // Now you can import your module and run your tests
 import renderTodos from "./todo.js";
+=======
+/**
+ * @jest-environment jsdom
+ */
+// import { deleteFunc } from "./todo.js";
+>>>>>>> Stashed changes
 
-beforeEach(() => {
-	localStorage.clear();
-	localStorage.setItem("LoggedInAs", JSON.stringify({ username: "testUser" }));
-});
+// test("deleteFunc should remove a todo from localStorage and render the updated todo list", () => {
+// 	localStorage.setItem(
+// 		"todos-username",
+// 		JSON.stringify(["Buy milk", "Walk the dog", "Do laundry"])
+// 	);
+// 	localStorage.setItem("favorites-username", JSON.stringify(["Buy milk"]));
 
-describe("renderTodos", () => {
-	test("it renders/adds a todo item", () => {
-		localStorage.setItem("todos-testUser", JSON.stringify(["Buy milk"]));
+// 	deleteFunc("Buy milk");
 
+<<<<<<< Updated upstream
 		renderTodos();
 
 		expect(dom.window.document.querySelector(".todoText").textContent).toBe(
@@ -34,3 +42,11 @@ describe("renderTodos", () => {
 		);
 	});
 });
+=======
+// 	expect(JSON.parse(localStorage.getItem("todos-username"))).toEqual([
+// 		"Walk the dog",
+// 		"Do laundry",
+// 	]);
+// 	expect(JSON.parse(localStorage.getItem("favorites-username"))).toEqual([]);
+// });
+>>>>>>> Stashed changes
