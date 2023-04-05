@@ -75,16 +75,24 @@ function renderTodos() {
 			const todoText = todoListDiv.querySelector(".todoText");
 			const newTodoText = prompt("Edit your to-do item:", todoText.textContent);
 			if (newTodoText !== null && newTodoText !== "") {
-				// Check if the current todo is in favorites
+				// Check if the current todo is in favorites and is checked
 				const isTodoInFavorites = todosFav.includes(todoText.textContent);
-
+				const isTodoChecked = checked.includes(todoText.textContent);
 				todoText.textContent = newTodoText;
 				todos[index] = newTodoText;
 				if (isTodoInFavorites) {
 					const favIndex = todosFav.indexOf(todoId);
+
 					if (favIndex !== -1) {
 						todosFav[favIndex] = newTodoText;
 						localStorage.setItem(userFavorites, JSON.stringify(todosFav));
+					}
+				}
+				if (isTodoChecked) {
+					const checkedIndex = checked.indexOf(todoId);
+					if (checkedIndex !== -1) {
+						checked[checkedIndex] = newTodoText;
+						localStorage.setItem(userChecked, JSON.stringify(checked));
 					}
 				}
 				localStorage.setItem(userTodosKey, JSON.stringify(todos));
@@ -141,15 +149,16 @@ function renderTodos() {
 				todoText.style.textDecoration = "none";
 				todoText.style.opacity = "1";
 
-				const index = checked.indexOf(todoId);
+				const checkedId = todoListDiv.getAttribute("data-id");
+				const index = checked.indexOf(checkedId);
 
 				if (index > -1) {
 					checked.splice(index, 1);
 					localStorage.setItem(userChecked, JSON.stringify(checked));
 				}
 			}
-			renderTodos();
 		}
+
 		const tickedId = todoListDiv.getAttribute("data-id");
 		let ticked = JSON.parse(localStorage.getItem(userChecked)) || [];
 		if (ticked.includes(tickedId)) {
